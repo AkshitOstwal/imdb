@@ -11,11 +11,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchData = TextEditingController();
 
-  Widget _buildMovieList(List<Movie> list) {
+  Widget _buildMovieList(List<Movie> list, String error) {
     if (list.length == 0) {
-      return Center(child: Text('Go do a search!!!!!'));
+      return Center(
+          child: error != '' ? Text(error) : Text('Go do a search!!!!!'));
     }
-
     return ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: list.length,
@@ -93,7 +93,6 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
@@ -103,7 +102,9 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
-              side: BorderSide(width: 2,),
+              side: BorderSide(
+                width: 2,
+              ),
             ),
             centerTitle: true,
             backgroundColor: Colors.blue.shade50,
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             width: width,
             child: provider.loading
                 ? Center(child: Text('Loading....'))
-                : _buildMovieList(provider.list),
+                : _buildMovieList(provider.list, provider.error),
           ),
         ),
       ),

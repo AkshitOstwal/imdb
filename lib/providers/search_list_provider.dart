@@ -6,9 +6,14 @@ import '../Models/movie.dart';
 
 class SearchResultProvider with ChangeNotifier {
   List<Movie> _list = [];
+  String _error = '';
   bool _loading = false;
   bool get loading {
     return _loading;
+  }
+
+  String get error{
+    return _error;
   }
 
   List<Movie> get list{
@@ -17,6 +22,8 @@ class SearchResultProvider with ChangeNotifier {
 
   Future<bool> getSearchList(String data) async {
     _loading = true;
+    _list = [];
+    _error = '';
     notifyListeners();
     String apikey = 'e23e734d';
     var result =
@@ -27,6 +34,7 @@ class SearchResultProvider with ChangeNotifier {
     print("\n");
     if (response['Response'] == "False") {
       print(response['Error']);
+      _error = response['Error'];
       notifyListeners();
       return false;
     } else {
