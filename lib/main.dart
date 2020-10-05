@@ -1,3 +1,4 @@
+// imdb mini clone app
 import 'package:flutter/material.dart';
 import 'package:imdb/pages/homepage.dart';
 import 'package:imdb/providers/search_list_provider.dart';
