@@ -1,4 +1,5 @@
-// imdb mini clone app
+// imdb mini clone app made in flutter for cross platform
+// using TMDB API
 import 'package:flutter/material.dart';
 import 'package:imdb/pages/homepage.dart';
 import 'package:imdb/providers/search_list_provider.dart';
