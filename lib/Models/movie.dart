@@ -1,4 +1,3 @@
-
 class Movie {
   String title;
   String genre;
@@ -16,5 +15,4 @@ class Movie {
   String imdbID;
   String type;
   int totalSeason;
-
 }
