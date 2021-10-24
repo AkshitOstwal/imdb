@@ -41,7 +41,6 @@ class SearchResultProvider with ChangeNotifier {
         var result = await http.get(
             'http://www.omdbapi.com/?apikey=$apikey&i=${element['imdbID']}');
         var response = json.decode(result.body);
-
         Movie _demo = Movie();
         _demo.title = element['Title'];
         _demo.imdbID = element['imdbID'];
@@ -53,7 +52,6 @@ class SearchResultProvider with ChangeNotifier {
         _list.add(_demo);
         notifyListeners();
       });
-
       _list.forEach((element) {
         print(element.title);
       });
