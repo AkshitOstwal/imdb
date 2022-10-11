@@ -1,6 +1,6 @@
 # imdb
 
-A new Flutter project.
+A flutter project on IMDB mobile app
 
 ## Getting Started
 
