@@ -16,7 +16,8 @@ class _HomePageState extends State<HomePage> {
     if (list.length == 0) {
       return Expanded(
         child: Center(
-            child: error != '' ? Text(error) : Text('Go do a search!!!!!')),
+            child: error != '' ? Text(error) : Text('Go do a search!!!!!'),
+          ),
       );
     }
     return Expanded(
@@ -85,9 +86,10 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   list[index].imdbRatings.toString(),
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 20,
+                                    color: Colors.deepPurple,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   softWrap: true,
@@ -148,9 +150,7 @@ class _HomePageState extends State<HomePage> {
                       primary: true,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.zero,
-                        side: BorderSide(
-                          width: 1,
-                        ),
+                        side: BorderSide(width: 1),
                       ),
                       centerTitle: true,
                       backgroundColor: Colors.blue.shade50,
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           controller: _searchData,
                           validator: (value) {
-                            if (value.isEmpty || value == null) {
+                            if (value == null || value.isEmpty) {
                               return 'Please enter some text';
                             }
                             return null;
@@ -174,15 +174,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                       actions: <Widget>[
                         IconButton(
-                            icon: Icon(
-                              Icons.search,
-                              color: Colors.black,
-                            ),
+                            icon: Icon(Icons.search,color: Colors.black),
                             color: Colors.black,
                             onPressed: () {
                               if (_formKey.currentState.validate())
                                 provider.getSearchList(_searchData.text);
-                            })
+                            },
+                          )
                       ],
                     ),
                   ),
@@ -190,7 +188,8 @@ class _HomePageState extends State<HomePage> {
                       ? Expanded(child: Center(child: Text('Loading....')))
                       : _buildMovieList(provider.list, provider.error),
                 ],
-              )),
+              ),
+            ),
         ),
       ),
     );
